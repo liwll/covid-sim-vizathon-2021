@@ -33,11 +33,10 @@ class Circle {
         this.x = x;
         this.y = y;
         this.radius = radius;
-        this.mass = 0.1;
-        this.velocities = [-1, 1];
+        this.mass = 100;
         this.velocity = {
-            x: this.velocities[Math.round(Math.random())],
-            y: this.velocities[Math.round(Math.random())],
+            x: Math.random() - 0.5,
+            y: Math.random() - 0.5
         }
         this.color = color;
     }
@@ -45,8 +44,8 @@ class Circle {
     draw() {
         ctx.beginPath();
         ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
-        ctx.strokeStyle = this.color;
-        ctx.stroke();
+        ctx.fillStyle = this.color;
+        ctx.fill();
         ctx.closePath();
     }
 
@@ -80,8 +79,8 @@ function init() {
     const numCircles = 100;
 
     for (let i = 0; i < numCircles; i++) {
-        const color = 'blue';
-        const radius = 20;
+        const color = 'white';
+        const radius = 5;
         let x = randomIntFromRange(radius, canvas.width - radius);
         let y = randomIntFromRange(radius, canvas.height - radius);
 
@@ -98,6 +97,33 @@ function init() {
     }
 }
 
+const INFECTION_DISTANCE = 50;
+function drawLine(circle, otherCircles) {
+    for (const c of otherCircles) {
+        const d = distance(circle.x, circle.y, c.x, c.y);
+
+        if (d > INFECTION_DISTANCE) {
+            continue;
+        }
+
+        // Infect other particle!
+        //   if (circle.status === STATUSES.INFECTED && d < INFECTED_DISTANCE) {
+        //     p.infect();
+        //   }
+    
+        const opacity = 0.8 - (d / INFECTION_DISTANCE) * 0.8;
+        ctx.lineWidth = 3;
+        ctx.strokeStyle = circle.color;
+        ctx.globalAlpha = opacity;
+        ctx.beginPath();
+        ctx.moveTo(circle.x, circle.y);
+        ctx.lineTo(c.x, c.y);
+        ctx.closePath();
+        ctx.stroke();
+        ctx.globalAlpha = 1;
+        }
+}
+
 // Animation
 function animate() {
     requestAnimationFrame(animate);
@@ -105,7 +131,8 @@ function animate() {
     circles.forEach((circle) => {
         clearInterval();
         circle.update(circles);
-    })
+        drawLine(circle, circles);
+    });
 }
 
 init();
