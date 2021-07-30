@@ -1,14 +1,136 @@
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
     <title>Vizathon 2021: Covid-19 Visualization</title>
+
+    <!--Fonts and styles-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tienne&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./style.css">
-</head>
-<body>
-    <h1>Covid-19 Visualization</h1>
-    <canvas id="canvas"></canvas>
-    <script src="./js/canvas.js" type="module"></script>
-</body>
+    <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+
+  </head>
+  <body>
+    <section class="content">
+
+        <div class="d-flex justify-content-center title-container">
+            <span class="title"><span>The People </span> vs <span> Covid-19</span></span>
+        </div>
+        
+        <div class="map">
+            <div class="container">
+                <div class="row align-items-end">
+                    <!--to be replaced, static data-->
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><p class="text-center">total confirmed cases</p></li>
+                            <li><p class="text-center numbers">195,886,929</p></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><p class="text-center">total deaths</p></li>
+                            <li><p class="text-center numbers">4,189,148</p></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><p class="text-center">vaccine doses</p></li>
+                            <li><p class="text-center numbers">3,830,124,730</p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container navigate-down">
+            <div class="d-flex justify-content-center">
+                <p>as of 6:17pm CEST, 29 July 2021</p>
+            </div>
+            <div class="d-flex justify-content-center arrow">
+                <img src="assets/img/white-down-arrow-icon-7.jpg" alt="arrow down" class="arrow-icon" id="navigate-down">
+            </div>
+        </div>
+
+        <div class="container cases">
+            <div class="d-flex justify-content-center">
+                <div class="row"></div>
+                <h2>Coronavirus disease 2019 (COVID-19)</h2>
+                </div>
+
+                <div class="row justify-content-center">
+                    <p class="text-center w-75">is defined as an illness caused by a novel coronavirus known as severe acute respiratory 
+                        syndrome coronavirus 2 (SARS-CoV-2; formerly known as 2019-nCoV). It was discovered after an
+                        outbreak of respiratory sickness cases in Wuhan City, Hubei Province, China.</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <!--to be replaced, sample-->
+                    <img src="assets/img/010821image001.png" alt="to_be_replaced_data_viz" id="cases-over-time">
+                </div> 
+            </div>
+        </div>
+
+        <div class="container dashboard">
+            <div class="row justify-content-center">
+                <p class="text-center" style="font-size: 24px; font-weight:100; width:95%">
+                    On <span style="font-size:xx-large; font-weight:300">March 11, 2020</span>, the WHO declared COVID-19 a global pandemic, its first such designation since declaring H1N1 
+                    influenza a pandemic in 2009.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <!--to be replaced, sample-->
+                <img src="assets/img/dashboard-sample.png" alt="to_be_replaced_data_viz" id="dashboard">
+            </div>
+        </div>
+
+        <div class="container economy-vs-covid">
+            <div class="row">
+                <h1 class="economy-vs-covid-title">Global Economy vs Covid-19<a href="#"></a></h1>
+            </div>
+
+            <div class="row">
+                <p style="font-size: 24px; font-weight: 100; width: 95%;">COVID-19 is a global pandemic and public health disaster, but it has also had a significant impact on the global economy and financial markets.</p>
+            </div>
+
+            <div class="row">
+                <h2 style="padding-top: 5%;">Covid-19 cases and Market over time</h2>
+                <!--to be replaced, sample-->
+                <img src="assets/img/010821image001.png" alt="to_be_replaced_data_viz" id="cases-over-time">
+
+            </div>
+        </div>
+
+        <div class="container simulations">
+            <div class="row">
+                <h1 class="simulations-title">Flattening the Curve</h1>
+            </div>
+
+            <div class="row">
+                <p style="font-size: 24px; font-weight: 100; width: 85%;">Because outbreaks of novel illnesses are unlikely to go away anytime soon, strong worldwide action is needed not only to save lives but also to defend economic prosperity.</p>
+            </div>
+
+            <div class="row">
+                <canvas id="canvas"></canvas>
+                <script src="./js/canvas.js" type="module"></script>         
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
 </html>
