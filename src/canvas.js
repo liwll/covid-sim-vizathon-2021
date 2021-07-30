@@ -9,11 +9,6 @@ console.log(canvas.height);
 const colors = [];
 
 // Event Listeners
-addEventListener('mousemove', (event) => {
-  mouse.x = event.clientX;
-  mouse.y = event.clientY;
-})
-
 addEventListener('resize', () => {
   canvas.width = innerWidth;
   canvas.height = innerHeight;
