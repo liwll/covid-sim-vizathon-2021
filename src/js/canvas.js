@@ -24,9 +24,7 @@ function init() {
     const numCircles = 100;
 
     for (let i = 0; i < numCircles; i++) {
-        const color = 'white';
         const radius = 5;
-        const drawCtx = ctx;
         let x = randomIntFromRange(radius, canvas.width - radius);
         let y = randomIntFromRange(radius, canvas.height - radius);
 
@@ -39,7 +37,7 @@ function init() {
                 }
             }
         }
-        circles.push(new Circle(x, y, radius, color, drawCtx));
+        circles.push(new Circle(x, y, radius, ctx));
     }
 }
 
