@@ -31,6 +31,10 @@ class Circle {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.velocity = {
+            x: Math.random() - 0.5,
+            y: Math.random() - 0.5,
+        }
         this.color = color;
     }
     
@@ -42,8 +46,26 @@ class Circle {
         ctx.closePath();
     }
 
-    update() {
+    update(circles) {
         this.draw();
+
+        //Collision check
+        for (let i = 0; i < circles.length; i++) {
+            if (this === circles[i]) continue;
+            if (distance(this.x, this.y, circles[i].x, circles[i].y)  < this.radius * 2) {
+                console.log('has collided');
+            }
+        }
+        //Prevent circles from leaving canvas
+        if (this.x - this.radius <= 0 || this.x + this.radius >= canvas.width) {
+            this.velocity.x = this.velocity.x * -1;
+        }
+        if (this.y - this.radius <= 0 || this.y + this.radius >= canvas.height) {
+            this.velocity.y = this.velocity.y * -1;
+        }
+        //Update position of circle based on velocity
+        this.x += this.velocity.x;
+        this.y += this.velocity.y;
     }
 }
 
@@ -75,9 +97,10 @@ function init() {
 // Animation
 function animate() {
     requestAnimationFrame(animate);
-
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     circles.forEach((circle) => {
-        circle.update();
+        clearInterval();
+        circle.update(circles);
     })
 }
 
