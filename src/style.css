@@ -23,8 +23,7 @@ body, html {
 
 body {
     margin: 0;
-<<<<<<< HEAD
-    padding: 5%;
+    padding: 7%;
     background-color: #1F1C30;
 }
 
@@ -32,27 +31,21 @@ body {
     background-image: url(assets/img/Rectangle\ 2.png);
     background-position: center;
     background-repeat: no-repeat;
-    padding-top: 8%;
+    padding-top: 7%;
     padding-bottom: 15%;
-=======
     background-color: #1f1c30;
 }
 
 h1 {
     color: white;
->>>>>>> e567362a376b2a46f9832b3b6be71d8cc878857a
 }
 
 canvas {
     display: block;
     width: 50%;
     height: 50%;
-<<<<<<< HEAD
-    border: 1px solid rgb(216, 139, 139);
-=======
     background-color: #1f1c30;
     border: 1px solid rgb(135, 135, 135);
->>>>>>> e567362a376b2a46f9832b3b6be71d8cc878857a
     margin: 10% auto;
 }
 
