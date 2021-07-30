@@ -1,11 +1,17 @@
 body {
     margin: 0;
+    background-color: #1f1c30;
+}
+
+h1 {
+    color: white;
 }
 
 canvas {
     display: block;
     width: 50%;
     height: 50%;
+    background-color: #1f1c30;
     border: 1px solid rgb(135, 135, 135);
     margin: 10% auto;
 }
