@@ -1,3 +1,5 @@
+import { resolveCollision } from './collisions.js'; 
+
 const canvas = document.querySelector('canvas');
 const ctx = canvas.getContext('2d');
 
@@ -15,7 +17,7 @@ function distance(x1, y1, x2, y2) {
 
 function randomIntFromRange(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
-  }
+}
 
 // Event Listeners
 addEventListener('resize', () => {
@@ -31,9 +33,11 @@ class Circle {
         this.x = x;
         this.y = y;
         this.radius = radius;
+        this.mass = 0.1;
+        this.velocities = [-1, 1];
         this.velocity = {
-            x: Math.random() - 0.5,
-            y: Math.random() - 0.5,
+            x: this.velocities[Math.round(Math.random())],
+            y: this.velocities[Math.round(Math.random())],
         }
         this.color = color;
     }
@@ -53,7 +57,7 @@ class Circle {
         for (let i = 0; i < circles.length; i++) {
             if (this === circles[i]) continue;
             if (distance(this.x, this.y, circles[i].x, circles[i].y)  < this.radius * 2) {
-                console.log('has collided');
+                resolveCollision(this, circles[i]);
             }
         }
         //Prevent circles from leaving canvas
