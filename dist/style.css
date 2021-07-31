@@ -41,15 +41,6 @@ h1 {
     color: white;
 }
 
-#canvas {
-    display: block;
-    width: 100%;
-    height: 100%;
-    background-color: #1f1c30;
-    border: 1px solid rgb(135, 135, 135);
-    margin: 10px auto;
-}
-
 /***top welcome page**/
 
 .title {
@@ -123,7 +114,7 @@ a::after {
 
 .simulations-title {
     color: #FFFF;
-    font-size: 96px;
+    font-size: 48px;
     font-weight: 700;
     width: 90%;
 }
@@ -152,4 +143,13 @@ a::after {
 
 #start-btn {
     width: 90%;
+}
+
+#canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #1f1c30;
+    border: 1px solid rgb(135, 135, 135);
+    margin: 10px auto;
 }
