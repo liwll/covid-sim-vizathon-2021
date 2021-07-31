@@ -1,14 +1,6 @@
 import { resolveCollision } from './collisions.js'; 
-import { distance } from './utility.js'
-
-const INIT_INFECTION_CHANCE = 0.05;
-const INFECTION_DISTANCE = 50;
-const STATUSES = {
-    HEALTHY: "HEALTHY",
-    INFECTED: "INFECTED",
-    RECOVERED: "RECOVERED",
-  };
-const RECOVERY_TIME = 14000;
+import { distance } from './utility.js';
+import { INIT_INFECTION_RATE, INIT_VACCINATION_RATE, VACCINE_PROTECTION, INFECTION_DISTANCE, STATUSES, RECOVERY_TIME } from './simController.js';
 
 class Circle {
     constructor(x, y, radius, ctx) {
@@ -24,13 +16,20 @@ class Circle {
         this.color = 'white';
         this.ctx = ctx;
 
-        if (Math.random() < INIT_INFECTION_CHANCE) {
+        if (Math.random() < INIT_INFECTION_RATE) {
             this.infect();
+        }
+        if (Math.random() < INIT_VACCINATION_RATE) {
+            this.vaccinate();
         }
     }
 
     infect() {
         if (this.status === STATUSES.INFECTED || this.status === STATUSES.RECOVERED) {
+            return;
+        }
+
+        if (this.status === STATUSES.VACCINATED && (Math.random() < VACCINE_PROTECTION)) {
             return;
         }
 
@@ -44,6 +43,15 @@ class Circle {
     recover() {
         this.status = STATUSES.RECOVERED;
         this.color = "#7FFF00";
+    }
+
+    vaccinate() {
+        if (this.status === STATUSES.INFECTED || this.status === STATUSES.RECOVERED) {
+            return;
+        }
+
+        this.status = STATUSES.VACCINATED;
+        this.color = "#59bfff";
     }
 
     draw() {

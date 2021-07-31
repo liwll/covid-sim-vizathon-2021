@@ -1,4 +1,5 @@
 import Circle from './Circle.js'
+import { POPULATION } from './simController.js';
 import { distance, randomIntFromRange } from './utility.js';
 
 const canvas = document.querySelector('canvas');
@@ -21,9 +22,8 @@ addEventListener('resize', () => {
 let circles;
 function init() {
     circles = [];
-    const numCircles = 100;
 
-    for (let i = 0; i < numCircles; i++) {
+    for (let i = 0; i < POPULATION; i++) {
         const radius = 5;
         let x = randomIntFromRange(radius, canvas.width - radius);
         let y = randomIntFromRange(radius, canvas.height - radius);
@@ -51,5 +51,4 @@ function animate() {
     });
 }
 
-init();
-animate();
+export { init, animate };
