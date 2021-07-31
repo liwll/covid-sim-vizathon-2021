@@ -2,33 +2,40 @@ import { init, animate } from './canvas.js';
 
 //Event Listeners
 let isAnimating = false;
-const startButton = document.getElementById('start-btn');
-startButton.addEventListener('click', () => {
-    init();
-    if (!isAnimating) {
-        animate();
-        isAnimating = true;
-    }
-    startButton.textContent = "Restart";  
-});
-
 let population = 100;
-const popSlider = document.getElementById('pop-slider');
-popSlider.addEventListener('change', () => {
-    population = popSlider.value;
-});
-
 let initInfectionRate = 0.05;
-const infectionSlider = document.getElementById('infection-slider');
-infectionSlider.addEventListener('change', () => {
-    initInfectionRate = infectionSlider.value / 100;
-});
-
 let initVaccinationRate = 0.5;
-const vaccinationSlider = document.getElementById('vaccination-slider');
-vaccinationSlider.addEventListener('change', () => {
-    initVaccinationRate = vaccinationSlider.value / 100;
-});
+const simController = () => {
+
+    const startButton = document.getElementById('start-btn');
+    startButton.addEventListener('click', () => {
+        init();
+        if (!isAnimating) {
+            animate();
+            isAnimating = true;
+        }
+        startButton.textContent = "Restart";  
+    });
+
+    
+    const popSlider = document.getElementById('pop-slider');
+    popSlider.addEventListener('change', () => {
+        population = popSlider.value;
+    });
+
+    
+    const infectionSlider = document.getElementById('infection-slider');
+    infectionSlider.addEventListener('change', () => {
+        initInfectionRate = infectionSlider.value / 100;
+    });
+
+    
+    const vaccinationSlider = document.getElementById('vaccination-slider');
+    vaccinationSlider.addEventListener('change', () => {
+        initVaccinationRate = vaccinationSlider.value / 100;
+    });
+}
+
 
 //Export Settings
 export const COLORS = {
@@ -64,3 +71,5 @@ export const chartColors = {
 export const fps = 144;
 export const simSeconds = 30;
 export const totalFrames = fps * simSeconds;
+
+export default simController;
