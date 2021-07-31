@@ -1,12 +1,10 @@
 import { init, animate } from './canvas.js';
 
-//Event Listeners
 let isAnimating = false;
 let population = 100;
 let initInfectionRate = 0.05;
 let initVaccinationRate = 0.5;
 const simController = () => {
-
     const startButton = document.getElementById('start-btn');
     startButton.addEventListener('click', () => {
         init();
