@@ -9,6 +9,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     
+    <!--Chart.js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+
     <title>Vizathon 2021: Covid-19 Visualization</title>
 
     <!--Fonts and styles-->
@@ -32,19 +35,19 @@
                     <div class="col-md-auto">
                         <ul>
                             <li><p class="text-center">total confirmed cases</p></li>
-                            <li><p class="text-center numbers">195,886,929</p></li>
+                            <li><p class="text-center numbers" id="confirmed-cases"></p></li>
                         </ul>
                     </div>
                     <div class="col-md-auto">
                         <ul>
                             <li><p class="text-center">total deaths</p></li>
-                            <li><p class="text-center numbers">4,189,148</p></li>
+                            <li><p class="text-center numbers" id="total-deaths"></p></li>
                         </ul>
                     </div>
                     <div class="col-md-auto">
                         <ul>
-                            <li><p class="text-center">vaccine doses</p></li>
-                            <li><p class="text-center numbers">3,830,124,730</p></li>
+                            <li><p class="text-center">total recovered</p></li>
+                            <li><p class="text-center numbers" id="total-recovered"></p></li>
                         </ul>
                     </div>
                 </div>
@@ -53,7 +56,12 @@
 
         <div class="container navigate-down">
             <div class="d-flex justify-content-center">
-                <p>as of 6:17pm CEST, 29 July 2021</p>
+                <p id="current-date"></p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button onclick="refreshData()" type="button" class="btn btn-outline-light" id="refresh-btn">
+                    Refresh Data
+                </button>
             </div>
             <div class="d-flex justify-content-center arrow">
                 <img src="assets/img/white-down-arrow-icon-7.jpg" alt="arrow down" class="arrow-icon" id="navigate-down">
@@ -73,8 +81,7 @@
                 </div>
 
                 <div class="row justify-content-center">
-                    <!--to be replaced, sample-->
-                    <img src="assets/img/010821image001.png" alt="to_be_replaced_data_viz" id="cases-over-time">
+                    <canvas id="chart"></canvas>
                 </div> 
             </div>
         </div>
@@ -88,8 +95,19 @@
             </div>
 
             <div class="row justify-content-center">
-                <!--to be replaced, sample-->
-                <img src="assets/img/dashboard-sample.png" alt="to_be_replaced_data_viz" id="dashboard">
+                <script type='text/javascript' src='https://prod-apnortheast-a.online.tableau.com/javascripts/api/viz_v1.js'></script>
+                    <div class='tableauPlaceholder' style='width: 1024px; height: 795px;'>
+                        <object class='tableauViz' width='1024' height='795' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fprod-apnortheast-a.online.tableau.com%2F' /> 
+                            <param name='embed_code_version' value='3' /> 
+                            <param name='site_root' value='&#47;t&#47;covid19dashboard' />
+                            <param name='name' value='Covid-19Dashboard&#47;Dashboard1' />
+                            <param name='tabs' value='no' />
+                            <param name='toolbar' value='yes' />
+                            <param name='showAppBanner' value='false' />
+                        </object>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -154,8 +172,13 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
+
+  <!--Live Covid-19 Tracker-->
+  <script src="js/liveData.min.js"></script>
+  <script src="js/casesOverTime.min.js"></script>
+
 </html>
