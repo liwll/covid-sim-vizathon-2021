@@ -144,13 +144,12 @@ a::after {
     margin: 0 20px;
 }
 
-<<<<<<< HEAD:src/style.css
-#start-btn {
-    width: 90%;
-=======
 #chart-dimensions {
     width: 100%;
     height: 100px;
     margin: 10px auto;
->>>>>>> 0eaad8570d62ad83bf9d52bdfbdfb5f288b563de:dist/style.css
+}
+
+#start-btn {
+    width: 90%;
 }
