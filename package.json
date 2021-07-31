@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "webpack --output-path ./dist",
+    "start": "webpack serve --content-base ./dist --output-path ./dist --hot"
   },
   "repository": {
     "type": "git",
