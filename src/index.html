@@ -121,21 +121,29 @@
 
             <div class="row">
                 <div id="settings-panel">
-                    <button id="start-btn">
-                        Start
-                    </button>
-                    <span class="slider">
-                        <div>Population</div>
-                        <input type="range" id="pop-slider" max="200" min='10' value='100'>
-                    </span>
-                    <span class="slider">
-                        <div>Initial Infection Rate</div>
-                        <input type="range" id="infection-slider" max="100" min='0' value='5'>
-                    </span>
-                    <span class="slider">
-                        <div>Initial Vaccination Rate</div>
-                        <input type="range" id="vaccination-slider" max="100" min="0" value="50">
-                    </span>
+                    <div class="col">
+                        <button type="button" class="btn btn-light" id="start-btn">
+                            Start
+                        </button>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="slider">
+                            <div>Population</div>
+                            <input type="range" id="pop-slider" max="200" min='10' value='100'>
+                        </span>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="slider">
+                            <div>Initial Infection Rate</div>
+                            <input type="range" id="infection-slider" max="100" min='0' value='5'>
+                        </span>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="slider">
+                            <div>Initial Vaccination Rate</div>
+                            <input type="range" id="vaccination-slider" max="100" min="0" value="50">
+                        </span>
+                    </div>
                 </div>
                 <canvas id="canvas"></canvas>
                 <script src="./js/simController.js" type="module"></script>         

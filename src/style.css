@@ -141,3 +141,7 @@ a::after {
     color: white;
     margin: 0 20px;
 }
+
+#start-btn {
+    width: 90%;
+}
