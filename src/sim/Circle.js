@@ -1,6 +1,6 @@
 import { resolveCollision } from './collisions.js'; 
 import { distance } from './utility.js';
-import { INIT_INFECTION_RATE, INIT_VACCINATION_RATE, VACCINE_PROTECTION, INFECTION_DISTANCE, STATUSES, RECOVERY_TIME } from './simController.js';
+import { COLORS, INIT_INFECTION_RATE, INIT_VACCINATION_RATE, VACCINE_PROTECTION, INFECTION_DISTANCE, STATUSES, RECOVERY_TIME } from './simController.js';
 
 class Circle {
     constructor(x, y, radius, ctx) {
@@ -13,7 +13,7 @@ class Circle {
             y: Math.random() - 0.5
         }
         this.status = STATUSES.HEALTHY;
-        this.color = 'white';
+        this.color = COLORS.HEALTHY;
         this.ctx = ctx;
 
         if (Math.random() < INIT_INFECTION_RATE) {
@@ -34,7 +34,7 @@ class Circle {
         }
 
         this.status = STATUSES.INFECTED;
-        this.color = "red";
+        this.color = COLORS.INFECTED;
         setTimeout(() => {
             this.recover();
         }, RECOVERY_TIME);
@@ -42,7 +42,7 @@ class Circle {
     
     recover() {
         this.status = STATUSES.RECOVERED;
-        this.color = "#7FFF00";
+        this.color = COLORS.RECOVERED;
     }
 
     vaccinate() {
@@ -51,7 +51,7 @@ class Circle {
         }
 
         this.status = STATUSES.VACCINATED;
-        this.color = "#59bfff";
+        this.color = COLORS.VACCINATED;
     }
 
     draw() {

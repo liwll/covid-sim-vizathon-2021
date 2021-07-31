@@ -163,13 +163,19 @@
                         </span>
                     </div>
                 </div>
+                <div id="chart-dimensions">
+                    <canvas id="chart-canvas"></canvas>
+                    <!--Required Chart script to initialize-->
+                    <script src="/src/sim/chart.js" type="module"></script>
+                </div>
                 <canvas id="canvas"></canvas>
-                <script src="./js/simController.js" type="module"></script>         
+                <script src="/src/sim/simController.js" type="module"></script>
             </div>
         </div>
     </section>
 
-
+    <!--Required Webpack Main Script-->
+    <script src="main.js"></script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
