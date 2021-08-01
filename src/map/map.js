@@ -40,7 +40,7 @@ const map = () => {
         opacity: 1.0,
         filled: true,
         radiusScale: 8,
-        radiusMinPixels: 3,
+        radiusMinPixels: 2,
         radiusMaxPixels: 100,
         getPosition: d => [d.Long_, d.Lat],
         getRadius: d => d.Confirmed < 100 ? 2 : 
