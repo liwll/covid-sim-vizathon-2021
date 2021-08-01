@@ -194,7 +194,7 @@
         init();
                 
         function init() {
-            var url = "https://api.covid19api.com/summary";
+            var url = "https://covid19.mathdro.id/api";
             var today = new Date();
 
             var date = 'as of ' + today;
@@ -203,10 +203,9 @@
             var data = '';
 
             $.get(url, function(data){
-                document.getElementById('confirmed-cases').innerHTML = data.Global.TotalConfirmed.toLocaleString("en-US");
-                document.getElementById('total-deaths').innerHTML = data.Global.TotalDeaths.toLocaleString("en-US");
-                document.getElementById('total-recovered').innerHTML = data.Global.TotalRecovered.toLocaleString("en-US");
-                console.log(data.Global);
+                document.getElementById('confirmed-cases').innerHTML = data.confirmed.value.toLocaleString("en-US");
+                document.getElementById('total-deaths').innerHTML = data.recovered.value.toLocaleString("en-US");
+                document.getElementById('total-recovered').innerHTML = data.deaths.value.toLocaleString("en-US");
             });
         }
 
