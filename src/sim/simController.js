@@ -1,7 +1,7 @@
 import { init, animate } from './canvas.js';
 
 let isAnimating = false;
-let population = 100;
+let population = 200;
 let initInfectionRate = 0.05;
 let initVaccinationRate = 0.5;
 let initDistancingRate = 0;
@@ -66,11 +66,11 @@ export { population as POPULATION};
 export { initInfectionRate as INIT_INFECTION_RATE };
 export { initVaccinationRate as INIT_VACCINATION_RATE };
 export { initDistancingRate as INIT_DISTANCING_RATE };
-export const VACCINE_PROTECTION = 0.997;
+export const VACCINE_PROTECTION = 0.995;
 export const INFECTION_DISTANCE = 50;
 export const RECOVERY_TIME = 10000;
 //Chart Settings
-let safeLimitPercentage = 0.3;
+let safeLimitPercentage = 0.5;
 export const chartSafeLimit = 1 - safeLimitPercentage;
 export const chartColors = {
     healthy: "white",
@@ -78,11 +78,11 @@ export const chartColors = {
     safeSick: "orange",
     dangerSick: "red",
     recovered: "#7FFF00",
-    empty: "#1f1c30",
+    empty: "#DC3131",
     safeLine: "gray"
 };
-export const fps = 144;
-export const simSeconds = 30;
+export const fps = 60;
+export const simSeconds = 15;
 export const totalFrames = fps * simSeconds;
 
 export default simController;

@@ -11,8 +11,8 @@ class Circle {
         this.distancing = Math.random() < INIT_DISTANCING_RATE ? true : false;
         this.velocity =  this.distancing ? {x: 0, y: 0} :  
         {
-            x: Math.random() - 0.5,
-            y: Math.random() - 0.5
+            x: (Math.random() - Math.random()) * 4,
+            y: (Math.random() - Math.random()) * 4,
         }
         this.status = STATUSES.HEALTHY;
         this.color = COLORS.HEALTHY;
@@ -39,7 +39,7 @@ class Circle {
             this.color = COLORS.INFECTED;
             setTimeout(() => {
                 this.recover();
-            }, (RECOVERY_TIME + Math.random() * 4000)
+            }, ((RECOVERY_TIME + Math.random() * 4000) / 2)
             );
         }
     }
