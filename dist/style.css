@@ -23,7 +23,7 @@ body, html {
 
 body {
     margin: 0;
-    padding: 7%;
+    padding: 3%;
     background-color: #1F1C30;
 }
 
@@ -34,7 +34,6 @@ body {
     padding-top: 7%;
     padding-bottom: 13%;
     background-color: #1f1c30;
-    margin-left: 6%;
 }
 
 h1 {
@@ -74,8 +73,12 @@ h2 {
 }
 
 /**top-center cases page**/
+.tool {
+    padding-top: 10%;
+}
 .cases {
     padding-top: 9%;
+    padding-bottom: 10%;
 }
 
 #cases-over-time {
@@ -86,7 +89,7 @@ h2 {
 
 /**center dashboard page**/
 .dashboard {
-    padding-top: 10%;
+    padding-top: 5%;
 }
 
 /**bottom-center economy-vs-covid page**/
@@ -110,11 +113,12 @@ a::after {
 /**bottom simulations page**/
 .simulations {
     padding-top: 10%;
+    padding-bottom: 10%;
 }
 
 .simulations-title {
     color: #FFFF;
-    font-size: 48px;
+    font-size: 98px;
     font-weight: 700;
     width: 90%;
 }
@@ -128,6 +132,7 @@ a::after {
     margin: 10px auto;
     border: 1px solid rgb(135, 135, 135);
     border-radius: 5px;
+    background-color: #DC3131;
 }
 
 .slider {
