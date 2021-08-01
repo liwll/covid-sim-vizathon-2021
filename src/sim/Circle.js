@@ -1,6 +1,6 @@
 import { resolveCollision } from './collisions.js'; 
 import { distance } from './utility.js';
-import { COLORS, INIT_INFECTION_RATE, INIT_VACCINATION_RATE, VACCINE_PROTECTION, INFECTION_DISTANCE, STATUSES, RECOVERY_TIME } from './simController.js';
+import { COLORS, INIT_INFECTION_RATE, INIT_VACCINATION_RATE, INIT_DISTANCING_RATE, VACCINE_PROTECTION, INFECTION_DISTANCE, STATUSES, RECOVERY_TIME } from './simController.js';
 
 class Circle {
     constructor(x, y, radius, ctx) {
@@ -8,12 +8,15 @@ class Circle {
         this.y = y;
         this.radius = radius;
         this.mass = 100;
-        this.velocity = {
+        this.distancing = Math.random() < INIT_DISTANCING_RATE ? true : false;
+        this.velocity =  this.distancing ? {x: 0, y: 0} :  
+        {
             x: Math.random() - 0.5,
             y: Math.random() - 0.5
         }
         this.status = STATUSES.HEALTHY;
         this.color = COLORS.HEALTHY;
+        this.health = 100;
         this.ctx = ctx;
 
         if (Math.random() < INIT_INFECTION_RATE) {
@@ -29,15 +32,16 @@ class Circle {
             return;
         }
 
-        if (this.status === STATUSES.VACCINATED && (Math.random() < VACCINE_PROTECTION)) {
-            return;
-        }
+        this.health -= this.status === STATUSES.VACCINATED ? (100 * (1 - VACCINE_PROTECTION)) : 100;
 
-        this.status = STATUSES.INFECTED;
-        this.color = COLORS.INFECTED;
-        setTimeout(() => {
-            this.recover();
-        }, RECOVERY_TIME);
+        if (this.health <= 0) {
+            this.status = STATUSES.INFECTED;
+            this.color = COLORS.INFECTED;
+            setTimeout(() => {
+                this.recover();
+            }, (RECOVERY_TIME + Math.random() * 4000)
+            );
+        }
     }
     
     recover() {
@@ -107,8 +111,10 @@ class Circle {
             this.velocity.y = this.velocity.y * -1;
         }
         //Update position of circle based on velocity
-        this.x += this.velocity.x;
-        this.y += this.velocity.y;
+        if (!this.distancing) {
+            this.x += this.velocity.x;
+            this.y += this.velocity.y;
+        }
     }
 }
 
