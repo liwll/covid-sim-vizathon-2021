@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <!--Chart.js-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.0/dist/chart.min.js"></script>
+
+    <title>Vizathon 2021: Covid-19 Visualization</title>
+
+    <!--Fonts and styles-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:100,200,300,700,900" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Tienne&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link href="/your-path-to-fontawesome/css/solid.css" rel="stylesheet">
+
+    <!--Google Maps Script-->
+    <script defer 
+        src="https://maps.googleapis.com/maps/api/js?key=&callback=initMap">
+    </script>
+  </head>
+  <body>
+    <section class="content">
+
+        <div class="d-flex justify-content-center title-container">
+            <span class="title">The People <span style="color:white; font-size: smaller;"> vs </span>Covid-19</span>
+        </div>
+        
+        <div class="map">
+            <div class="container">
+                <div class="row d-flex justify-content-center" style="margin-left:-10%;">
+                    <!--to be replaced, static data-->
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><p class="text-center">total confirmed cases</p></li>
+                            <li><p class="text-center numbers" id="confirmed-cases"></p></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><p class="text-center">total deaths</p></li>
+                            <li><p class="text-center numbers" id="total-deaths"></p></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-auto">
+                        <ul>
+                            <li><p class="text-center">total recovered</p></li>
+                            <li><p class="text-center numbers" id="total-recovered"></p></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container navigate-down">
+            <div class="d-flex justify-content-center">
+                <p id="current-date"></p>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button onclick="refreshData()" type="button" class="btn btn-outline-light" id="refresh-btn">
+                    Refresh Data
+                </button>
+            </div>
+            <div class="d-flex justify-content-center arrow">
+                <img src="assets/img/white-down-arrow-icon-7.jpg" alt="arrow down" class="arrow-icon" id="navigate-down">
+            </div>
+        </div>
+
+        <div class="container tool">
+            <div class="row">
+                <div id="map" style="width: 100vw; height: 100vh;"></div>
+                <div id="tooltip"></div>
+            </div>
+        </div>
+
+        <div class="container cases">
+            <div class="d-flex justify-content-center">
+                <div class="row"></div>
+                <h2>Coronavirus disease 2019 (COVID-19)</h2>
+                </div>
+
+                <div class="row justify-content-center">
+                    <p class="text-center w-75">is defined as an illness caused by a novel coronavirus known as severe acute respiratory 
+                        syndrome coronavirus 2 (SARS-CoV-2; formerly known as 2019-nCoV). It was discovered after an
+                        outbreak of respiratory sickness cases in Wuhan City, Hubei Province, China.</p>
+                </div>
+
+                <div class="row justify-content-center">
+                    <canvas id="chart"></canvas>
+                </div> 
+            </div>
+        </div>
+
+        <div class="container dashboard">
+            <div class="row justify-content-center">
+                <p class="text-center" style="font-size: 24px; font-weight:100; width:95%">
+                    It was on <span style="font-size:xx-large; font-weight:300">March 11, 2020</span>, the WHO declared COVID-19 a global pandemic, its first such designation since declaring H1N1 
+                    influenza a pandemic in 2009.
+                </p>
+            </div>
+
+            <div class="row justify-content-center">
+                <script type='text/javascript' src='https://prod-apnortheast-a.online.tableau.com/javascripts/api/viz_v1.js'></script>
+                    <div class='tableauPlaceholder' style='width: 1024px; height: 795px;'>
+                        <object class='tableauViz' width='1024' height='795' style='display:none;'>
+                            <param name='host_url' value='https%3A%2F%2Fprod-apnortheast-a.online.tableau.com%2F' /> 
+                            <param name='embed_code_version' value='3' /> 
+                            <param name='site_root' value='&#47;t&#47;covid19dashboard' />
+                            <param name='name' value='Covid-19Dashboard&#47;Dashboard1' />
+                            <param name='tabs' value='no' />
+                            <param name='toolbar' value='yes' />
+                            <param name='showAppBanner' value='false' />
+                        </object>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container simulations">
+            <div class="row">
+                <h1 class="simulations-title">Flattening the Curve</h1>
+            </div>
+
+            <div class="row">
+                <p style="font-size: 24px; font-weight: 100; width: 85%;">Because outbreaks of novel illnesses are unlikely to go away anytime soon, strong worldwide action is needed not only to save lives but also to defend economic prosperity.</p>
+            </div>
+
+            <div class="row">
+                <div id="settings-panel">
+                    <div class="col">
+                        <button type="button" class="btn btn-light" id="start-btn">
+                            Start
+                        </button>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="slider">
+                            <div>Population: <span id="pop-val">100</span></div>
+                            <input type="range" id="pop-slider" max="200" min='10' value='100'>
+                        </span>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="slider">
+                            <div>Initial Infection Rate: <span id="infection-val">5</span>%</div>
+                            <input type="range" id="infection-slider" max="100" min='0' value='5'>
+                        </span>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="slider">
+                            <div>Initial Vaccination Rate: <span id="vaccination-val">50</span>%</div>
+                            <input type="range" id="vaccination-slider" max="100" min="0" value="50">
+                        </span>
+                    </div>
+                    <div class="col d-flex justify-content-end">
+                        <span class="slider">
+                            <div>Social Distancing Rate: <span id="social-dist-val">0</span>%</div>
+                            <input type="range" id="social-dist-slider" max="100" min="0" value="0">
+                        </span>
+                    </div>
+                </div>
+                <div id="chart-dimensions">
+                    <canvas id="chart-canvas"></canvas>
+                    <!--Required Chart script to initialize-->
+                    <script src="../src/sim/chart.js" type="module"></script>
+                </div>
+                <canvas id="canvas"></canvas>
+                <script src="../src/sim/simController.js" type="module"></script>
+            </div>
+        </div>
+    </section>
+
+    <!--Required Webpack Main Script-->
+    <script src="main.js"></script>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!--Live Covid-19 Tracker-->
+    <script>
+        init();
+                
+        function init() {
+            var url = "https://api.covid19api.com/summary";
+            var today = new Date();
+
+            var date = 'as of ' + today;
+            document.getElementById("current-date").innerHTML = date;
+
+            var data = '';
+
+            $.get(url, function(data){
+                document.getElementById('confirmed-cases').innerHTML = data.Global.TotalConfirmed.toLocaleString("en-US");
+                document.getElementById('total-deaths').innerHTML = data.Global.TotalDeaths.toLocaleString("en-US");
+                document.getElementById('total-recovered').innerHTML = data.Global.TotalRecovered.toLocaleString("en-US");
+                console.log(data.Global);
+            });
+        }
+
+        function clearData() {
+            $("#confirmed-cases").empty();
+            $("#total-deaths").empty();
+            $("#total-recovered").empty();
+        }
+
+        function refreshData() {
+            clearData();
+            init();
+        }
+        </script>
+  
+        <script>
+            const api = "https://disease.sh/v3/covid-19/historical/all?lastdays=557";
+
+            const getData = async () => {
+                const response = await fetch(`${api}`);
+                if (response.ok) {
+                    return await response.json();
+                } else {
+                    return Promise.reject(response.status);
+                }
+            };
+            
+            const result = getData();
+            result.then((data) => {
+                let date = Object.keys(data.cases);
+                let total = Object.values(data.cases);
+                let deaths = Object.values(data.deaths);
+                let recovered = Object.values(data.recovered);
+            
+                var ctx = document.getElementById('chart').getContext('2d');
+                let myChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: date,
+                    datasets: [
+                    {
+                        label: 'Total Cases',
+                        data: total,
+                        borderColor: 'rgba(255, 99, 132)',
+                        fill: false,
+                    },
+                    {
+                        label: 'Recovered Cases',
+                        data: recovered,
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        fill: false,
+                    },
+                    {
+                        label: 'Deaths',
+                        data: deaths,
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        fill: false,
+                    },
+                    ],
+                },
+                options: {
+                    scales: {
+                    yAxes: [
+                        {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Numbers in Thousands',
+                        },
+                        },
+                    ],
+                    xAxes: [
+                        {
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Date(DD/MM/YYYY)',
+                        },
+                        },
+                    ],
+                    },
+                    title: {
+                    display: true,
+                    text: `Coronovirus Cases in the World for the last year to current`,
+                    },
+                },
+                });
+            })
+            .catch((error) => {
+                console.log('Error: ', error);
+            });
+    </script>
+  </body>
+</html>
