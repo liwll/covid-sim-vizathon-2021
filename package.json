@@ -12,7 +12,11 @@
     "url": "git+https://github.com/liwll/covid-sim-vizathon-2021.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "liwll (https://github.com/liwll)",
+  "contributors": [
+    "liwll (https://github.com/liwll)",
+    "GWC523 (https://github.com/GWC523)"
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/liwll/covid-sim-vizathon-2021/issues"
