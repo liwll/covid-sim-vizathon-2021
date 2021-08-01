@@ -1,5 +1,7 @@
 ![Title](./images/title.png)
 
+[Try it out](https://the-people-vs-covid.web.app/)
+
 # Vizathon 2021: The People vs Covid-19
 
 ### About
