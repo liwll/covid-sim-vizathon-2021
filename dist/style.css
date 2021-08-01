@@ -67,11 +67,6 @@ h2 {
     font-weight: 900;
 }
 
-.arrow-icon {
-    width: 10%;
-    height: auto;
-}
-
 /**top-center cases page**/
 .tool {
     padding-top: 10%;
@@ -178,11 +173,23 @@ a::after {
     width: 100%;
     height: 100%;
     background-color: #1f1c30;
-    border: 1px solid rgb(135, 135, 135);
+    border: 1px solid white;
     margin: 10px auto;
 }
 
 /* Google Maps */
+#tool {
+    margin-top: -80px;
+    display: none;
+}
+
+#navigate {
+    padding-top: 10px;
+    color: white;
+    font-size: 4em;
+    cursor: pointer;
+}
+
 #tooltip {
     display: none;
     position: absolute; 
@@ -191,4 +198,8 @@ a::after {
     padding: 20px;
     border-radius: 10px;
     color: white;
+}
+
+#map {
+    border: 1px solid #DC3131;
 }

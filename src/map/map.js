@@ -2,6 +2,15 @@ import { GoogleMapsOverlay } from '@deck.gl/google-maps';
 import { ScatterplotLayer } from '@deck.gl/layers';
 
 const map = () => {
+    //Click Listener
+    const mapContainer = document.getElementById('tool');
+    const nav = document.getElementById('navigate');
+    nav.addEventListener('click', () => {
+        mapContainer.style.display = (nav.name === 'chevron-down') ? 'block' : 'none';
+        nav.name = (nav.name === 'chevron-down') ? 'chevron-up' : 'chevron-down';
+    });
+
+    //Map
     const sourceData = 'https://covid19.mathdro.id/api/confirmed';
 
     const formatNumber = (num) => {
@@ -13,7 +22,6 @@ const map = () => {
             const {
                 confirmed,
                 deaths,
-                recovered,
                 combinedKey,
             } = object;
         
