@@ -3,7 +3,7 @@ import { init, animate } from './canvas.js';
 let isAnimating = false;
 let population = 200;
 let initInfectionRate = 0.05;
-let initVaccinationRate = 0.5;
+let initVaccinationRate = 0;
 let initDistancingRate = 0;
 const simController = () => {
     const startButton = document.getElementById('start-btn');
