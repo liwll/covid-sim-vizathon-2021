@@ -2,7 +2,7 @@ import { GoogleMapsOverlay } from '@deck.gl/google-maps';
 import { ScatterplotLayer } from '@deck.gl/layers';
 
 const map = () => {
-    const sourceData = '/src/data/covid.json';
+    const sourceData = 'https://covid19.mathdro.id/api/confirmed';
 
     const formatNumber = (num) => {
         return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
@@ -11,17 +11,17 @@ const map = () => {
         const el = document.getElementById('tooltip');
         if (object) {
             const {
-                Confirmed,
-                Deaths,
-                Recovered,
-                Combined_Key,
+                confirmed,
+                deaths,
+                recovered,
+                combinedKey,
             } = object;
         
-            const caseNum = `Total Cases: ${formatNumber(Confirmed)}`
-            const deathNum = `Deaths: ${formatNumber(Deaths)}`
+            const caseNum = `Total Cases: ${formatNumber(confirmed)}`
+            const deathNum = `Deaths: ${formatNumber(deaths)}`
 
             el.innerHTML = `
-                <div style="width: 100%;"><h3>${Combined_Key.toUpperCase()}<h3></div>
+                <div style="width: 100%;"><h3>${combinedKey.toUpperCase()}<h3></div>
                 <div > ${caseNum} </div>
                 <div > ${deathNum} </div>
                 `;
@@ -42,10 +42,10 @@ const map = () => {
         radiusScale: 8,
         radiusMinPixels: 2,
         radiusMaxPixels: 100,
-        getPosition: d => [d.Long_, d.Lat],
-        getRadius: d => d.Confirmed < 100 ? 2 : 
-            d.Confirmed < 1000 ? 5 : d.Confirmed / 200,
-        getFillColor: d => d.Confirmed > 0 ? [200, 0, 40, 150] : [255, 140, 0, 100],
+        getPosition: d => [d.long, d.lat],
+        getRadius: d => d.confirmed < 100 ? 2 : 
+            d.confirmed < 1000 ? 5 : d.confirmed / 200,
+        getFillColor: d => d.confirmed > 0 ? [200, 0, 40, 150] : [255, 140, 0, 100],
 
         pickable: true,
         onClick: showStats,
