@@ -2,6 +2,7 @@ import Circle from './Circle.js'
 import { STATUSES, POPULATION } from './simController.js';
 import { distance, randomIntFromRange } from './utility.js';
 import updateChartStats from './updateChartStats.js';
+import { initChart, startChart, updateChart, drawChart} from './chart.js'
 
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
@@ -45,8 +46,8 @@ function init() {
         }
         circles.push(new Circle(x, y, radius, ctx));
     }
-    Chart.init(chart, POPULATION);
-    Chart.start();
+    initChart(chart, POPULATION);
+    startChart();
 }
 
 // Animation
@@ -59,9 +60,9 @@ function animate() {
         circle.update(circles);
         simData[circle.status]++;
     });
-    Chart.update(simData);
+    updateChart(simData);
     updateChartStats(simData);
-    Chart.draw();
+    drawChart();
     simData = {HEALTHY: 0, VACCINATED: 0, INFECTED: 0, RECOVERED: 0};
 }
 
