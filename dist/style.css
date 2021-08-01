@@ -150,10 +150,16 @@ a::after {
 }
 
 #chart-stats {
-    color: white;
+    display: flex;
+    width: 80%;
+    margin: 0 auto;
 }
 
 .chart-stat {
+    text-align: left;
+    width: 33%;
+    display: block;
+    color: white;
     margin: 0 10px;
 }
 
