@@ -140,8 +140,8 @@
                     </div>
                     <div class="col d-flex justify-content-end">
                         <span class="slider">
-                            <div>Population: <span id="pop-val">100</span></div>
-                            <input type="range" id="pop-slider" max="200" min='10' value='100'>
+                            <div>Population: <span id="pop-val">200</span></div>
+                            <input type="range" id="pop-slider" max="200" min='10' value='200'>
                         </span>
                     </div>
                     <div class="col d-flex justify-content-end">
@@ -163,13 +163,20 @@
                         </span>
                     </div>
                 </div>
-                <div id="chart-dimensions">
-                    <canvas id="chart-canvas"></canvas>
-                    <!--Required Chart script to initialize-->
-                    <script src="/src/sim/chart.js" type="module"></script>
-                </div>
                 <canvas id="canvas"></canvas>
                 <script src="/src/sim/simController.js" type="module"></script>
+                <div id="chart-panel">
+                    <div id="chart-stats">
+                        <span class="chart-stat">Healthy: <span id="stat-healthy">0</span></span>
+                        <span class="chart-stat">Infected: <span id="stat-infected">0</span></span>
+                        <span class="chart-stat">Recovered: <span id="stat-recovered">0</span></span>
+                    </div>
+                    <div id="chart-dimensions">
+                        <canvas id="chart-canvas"></canvas>
+                        <!--Required Chart script to initialize-->
+                        <script src="/src/sim/chart.js" type="module"></script>
+                    </div>
+                </div>  
             </div>
         </div>
     </section>
